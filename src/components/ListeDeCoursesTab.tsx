@@ -5,32 +5,33 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
 
 const ListeDeCoursesTab = () => {
-  const [listes, setListes] = useState<ListeDeCourse[]>([]);
+  const [liste, setListe] = useState<ListeDeCourse | null>(null);
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
 
   useEffect(() => {
-    fetchListes();
+    fetchListe();
   }, []);
 
-  const fetchListes = async () => {
+  const fetchListe = async () => {
     try {
       setLoading(true);
       const { data, error } = await supabase
         .from('alimentation_liste_de_course')
         .select('*')
-        .order('created_at', { ascending: false });
+        .eq('id', 1)
+        .single();
 
       if (error) {
         throw error;
       }
 
-      setListes(data || []);
+      setListe(data);
     } catch (error) {
-      console.error('Erreur lors du chargement des listes:', error);
+      console.error('Erreur lors du chargement de la liste:', error);
       toast({
         title: "Erreur",
-        description: "Impossible de charger les listes de courses",
+        description: "Impossible de charger la liste de courses",
         variant: "destructive",
       });
     } finally {
@@ -85,47 +86,38 @@ const ListeDeCoursesTab = () => {
           </p>
         </div>
 
-        {listes.length === 0 ? (
+        {!liste ? (
           <Card className="text-center p-8 shadow-card bg-gradient-card">
             <div className="text-6xl mb-4">📝</div>
             <h3 className="text-xl font-semibold mb-2">Aucune liste trouvée</h3>
             <p className="text-muted-foreground">
-              Vos listes de courses apparaîtront ici une fois ajoutées à la base de données.
+              Votre liste de courses apparaîtra ici une fois ajoutée à la base de données.
             </p>
           </Card>
         ) : (
-          <div className="space-y-6">
-            {listes.map((liste, index) => {
-              const items = formatListeContent(liste.liste_de_course);
-              
-              return (
-                <Card 
-                  key={liste.id} 
-                  className="shadow-card hover:shadow-soft transition-all duration-300 bg-gradient-card border-0"
-                >
-                  <CardHeader className="pb-4">
-                    <CardTitle className="flex items-center gap-3 text-primary">
-                      <span className="bg-primary/10 p-2 rounded-full text-sm">#{index + 1}</span>
-                      Liste de courses
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-3">
-                      {items.map((item, itemIndex) => (
-                        <div 
-                          key={itemIndex}
-                          className="flex items-start gap-3 p-3 bg-accent/30 rounded-lg hover:bg-accent/50 transition-colors"
-                        >
-                          <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-foreground leading-relaxed">{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
+          <Card 
+            className="shadow-card hover:shadow-soft transition-all duration-300 bg-gradient-card border-0"
+          >
+            <CardHeader className="pb-4">
+              <CardTitle className="flex items-center gap-3 text-primary">
+                <span className="bg-primary/10 p-2 rounded-full text-sm">#1</span>
+                Ma Liste de courses
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                {formatListeContent(liste.liste_de_course).map((item, itemIndex) => (
+                  <div 
+                    key={itemIndex}
+                    className="flex items-start gap-3 p-3 bg-accent/30 rounded-lg hover:bg-accent/50 transition-colors"
+                  >
+                    <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="text-foreground leading-relaxed">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
         )}
       </div>
     </div>
