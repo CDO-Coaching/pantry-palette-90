@@ -75,44 +75,51 @@ const ListeDeCoursesTab = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted/30">
-      <div className="max-w-4xl mx-auto p-6">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-foreground mb-2">
-            🛒 Mes Listes de Courses
+    <div className="min-h-screen bg-gradient-recipe">
+      <div className="max-w-4xl mx-auto p-8">
+        <div className="text-center mb-10">
+          <h1 className="font-recipe text-3xl font-bold recipe-title mb-3">
+            Ma Liste de Courses
           </h1>
-          <p className="text-muted-foreground">
-            Toutes vos listes organisées pour faciliter vos achats
+          <p className="text-muted-foreground font-sans text-lg">
+            Mes courses soigneusement organisées
           </p>
         </div>
 
         {!liste ? (
-          <Card className="text-center p-8 shadow-card bg-gradient-card">
-            <div className="text-6xl mb-4">📝</div>
-            <h3 className="text-xl font-semibold mb-2">Aucune liste trouvée</h3>
-            <p className="text-muted-foreground">
+          <Card className="text-center p-12 shadow-recipe bg-gradient-card border-0">
+            <div className="text-7xl mb-6">📝</div>
+            <h3 className="font-recipe text-2xl font-semibold recipe-title mb-4">Aucune liste trouvée</h3>
+            <p className="text-muted-foreground font-sans text-lg leading-relaxed">
               Votre liste de courses apparaîtra ici une fois ajoutée à la base de données.
             </p>
           </Card>
         ) : (
-          <Card 
-            className="shadow-card hover:shadow-soft transition-all duration-300 bg-gradient-card border-0"
-          >
-            <CardHeader className="pb-4">
-              <CardTitle className="flex items-center gap-3 text-primary">
-                <span className="bg-primary/10 p-2 rounded-full text-sm">#1</span>
-                Ma Liste de courses
+          <Card className="shadow-recipe hover:shadow-soft transition-smooth bg-gradient-card border-0 overflow-hidden">
+            <CardHeader className="bg-accent/10 border-b border-border/20 pb-6">
+              <CardTitle className="flex items-center gap-4 recipe-title">
+                <div className="bg-primary/10 p-3 rounded-full">
+                  <span className="text-2xl warm-orange font-bold">#1</span>
+                </div>
+                <div>
+                  <h2 className="font-recipe text-2xl font-bold">Ma Liste de Courses</h2>
+                  <p className="font-sans text-muted-foreground text-base font-normal mt-1">
+                    Tous mes essentiels pour cuisiner
+                  </p>
+                </div>
               </CardTitle>
             </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
+            <CardContent className="p-8">
+              <div className="space-y-4">
                 {formatListeContent(liste.liste_de_course).map((item, itemIndex) => (
                   <div 
                     key={itemIndex}
-                    className="flex items-start gap-3 p-3 bg-accent/30 rounded-lg hover:bg-accent/50 transition-colors"
+                    className="flex items-start gap-4 p-4 bg-accent/20 rounded-xl hover:bg-accent/30 transition-smooth border border-accent/30"
                   >
-                    <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                    <span className="text-foreground leading-relaxed">{item}</span>
+                    <div className="w-3 h-3 bg-primary rounded-full mt-2 flex-shrink-0 shadow-sm"></div>
+                    <span className="text-foreground font-sans text-lg leading-relaxed flex-1">
+                      {item}
+                    </span>
                   </div>
                 ))}
               </div>

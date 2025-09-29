@@ -13,6 +13,11 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        'serif': ['Merriweather', 'serif'],
+        'sans': ['Inter', 'sans-serif'],
+        'recipe': ['Merriweather', 'serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -57,6 +62,10 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        'recipe-title': "hsl(var(--recipe-title))",
+        'warm-orange': "hsl(var(--warm-orange))",
+        'cream': "hsl(var(--cream))",
+        'sage': "hsl(var(--sage))",
       },
       borderRadius: {
         lg: "var(--radius)",

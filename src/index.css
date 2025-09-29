@@ -8,57 +8,61 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 98%;
-    --foreground: 210 10% 15%;
+    /* Palette livre de recettes - Couleurs chaleureuses */
+    --background: 35 25% 96%; /* Blanc cassé beige très doux */
+    --foreground: 25 15% 20%; /* Marron foncé pour le texte */
 
-    --card: 0 0% 100%;
-    --card-foreground: 210 10% 15%;
+    --card: 0 0% 100%; /* Blanc pur pour les cartes */
+    --card-foreground: 25 15% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 10% 15%;
+    --popover-foreground: 25 15% 20%;
 
-    --primary: 142 45% 45%;
+    /* Rouge/orange chaleureux pour les accents */
+    --primary: 15 85% 55%; /* Rouge-orange gourmand */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 20% 96%;
-    --secondary-foreground: 210 10% 15%;
+    --secondary: 35 20% 90%; /* Beige doux */
+    --secondary-foreground: 25 15% 25%;
 
-    --muted: 210 15% 94%;
-    --muted-foreground: 210 10% 50%;
+    --muted: 35 15% 92%; /* Beige très clair */
+    --muted-foreground: 25 10% 45%;
 
-    --accent: 142 30% 85%;
-    --accent-foreground: 142 45% 25%;
+    --accent: 15 75% 90%; /* Rouge-orange très doux */
+    --accent-foreground: 15 85% 35%;
+
+    /* Couleurs vintage livre de cuisine */
+    --recipe-title: 25 25% 25%; /* Marron anthracite pour titres */
+    --warm-orange: 20 80% 60%; /* Orange chaleureux */
+    --cream: 35 30% 95%; /* Crème */
+    --sage: 95 15% 75%; /* Vert sauge discret */
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 15% 90%;
-    --input: 210 15% 90%;
-    --ring: 142 45% 45%;
+    --border: 35 20% 85%; /* Bordures beiges douces */
+    --input: 35 20% 88%;
+    --ring: 15 85% 55%;
 
-    --gradient-primary: linear-gradient(135deg, hsl(142 45% 45%), hsl(142 35% 55%));
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(210 15% 98%));
-    --shadow-soft: 0 4px 20px -4px hsl(210 10% 80% / 0.15);
-    --shadow-card: 0 2px 8px -2px hsl(210 10% 80% / 0.1);
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Gradients chaleureux */
+    --gradient-primary: linear-gradient(135deg, hsl(15 85% 55%), hsl(20 80% 60%));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(35 20% 98%));
+    --gradient-recipe: linear-gradient(180deg, hsl(35 30% 98%), hsl(35 25% 96%));
+    --shadow-soft: 0 8px 32px -8px hsl(25 15% 20% / 0.12);
+    --shadow-card: 0 4px 16px -4px hsl(25 15% 20% / 0.08);
+    --shadow-recipe: 0 6px 24px -6px hsl(15 85% 55% / 0.15);
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 35 25% 96%;
+    --sidebar-foreground: 25 15% 20%;
+    --sidebar-primary: 15 85% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 35 20% 90%;
+    --sidebar-accent-foreground: 25 15% 25%;
+    --sidebar-border: 35 20% 85%;
+    --sidebar-ring: 15 85% 55%;
   }
 
   .dark {
@@ -124,8 +128,16 @@ All colors MUST be HSL.
     box-shadow: var(--shadow-card);
   }
   
+  .shadow-recipe {
+    box-shadow: var(--shadow-recipe);
+  }
+  
   .bg-gradient-card {
     background: var(--gradient-card);
+  }
+  
+  .bg-gradient-recipe {
+    background: var(--gradient-recipe);
   }
   
   .bg-gradient-primary {
@@ -134,5 +146,14 @@ All colors MUST be HSL.
   
   .transition-smooth {
     transition: var(--transition-smooth);
+  }
+
+  /* Classes pour typographie livre de recettes */
+  .recipe-title {
+    color: hsl(var(--recipe-title));
+  }
+  
+  .warm-orange {
+    color: hsl(var(--warm-orange));
   }
 }

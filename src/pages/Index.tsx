@@ -7,7 +7,7 @@ const Index = () => {
   const [activeTab, setActiveTab] = useState('courses');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-accent/10">
+    <div className="min-h-screen bg-gradient-recipe">
       <TabNavigation activeTab={activeTab} onTabChange={setActiveTab} />
       
       <main className="transition-all duration-300">

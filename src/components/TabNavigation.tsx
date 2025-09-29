@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { BookOpen, ShoppingCart, UtensilsCrossed } from 'lucide-react';
 
 interface TabNavigationProps {
   activeTab: string;
@@ -7,30 +8,51 @@ interface TabNavigationProps {
 
 const TabNavigation = ({ activeTab, onTabChange }: TabNavigationProps) => {
   const tabs = [
-    { id: 'courses', label: 'Liste de courses', icon: '🛒' },
-    { id: 'recettes', label: 'Recettes', icon: '👨‍🍳' }
+    { id: 'courses', label: 'Liste de courses', icon: ShoppingCart },
+    { id: 'recettes', label: 'Mes Recettes', icon: BookOpen }
   ];
 
   return (
-    <div className="w-full bg-white border-b border-border shadow-sm">
-      <div className="max-w-4xl mx-auto px-4">
-        <div className="flex space-x-1">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => onTabChange(tab.id)}
-              className={cn(
-                "flex items-center gap-2 px-6 py-4 text-sm font-medium transition-all duration-300 relative",
-                "hover:text-primary hover:bg-accent/50 rounded-t-lg",
-                activeTab === tab.id
-                  ? "text-primary bg-gradient-to-b from-accent/30 to-transparent border-b-2 border-primary"
-                  : "text-muted-foreground"
-              )}
-            >
-              <span className="text-lg">{tab.icon}</span>
-              {tab.label}
-            </button>
-          ))}
+    <div className="w-full bg-gradient-recipe border-b border-border/30 shadow-card">
+      <div className="max-w-4xl mx-auto px-6 pt-8 pb-6">
+        {/* Header principal style livre de recettes */}
+        <div className="text-center mb-8">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <UtensilsCrossed className="w-8 h-8 warm-orange" />
+            <h1 className="font-recipe text-4xl font-bold recipe-title">
+              Mon Carnet de Cuisine
+            </h1>
+            <UtensilsCrossed className="w-8 h-8 warm-orange" />
+          </div>
+          <p className="text-muted-foreground font-sans text-lg italic">
+            L'art de bien cuisiner et de bien s'organiser
+          </p>
+          <div className="w-20 h-0.5 bg-gradient-primary rounded-full mx-auto mt-4"></div>
+        </div>
+
+        {/* Navigation par onglets style livre vintage */}
+        <div className="flex justify-center">
+          <div className="inline-flex bg-card/50 p-1.5 rounded-2xl shadow-recipe border border-border/20 backdrop-blur-sm">
+            {tabs.map((tab) => {
+              const IconComponent = tab.icon;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => onTabChange(tab.id)}
+                  className={cn(
+                    "flex items-center gap-3 px-8 py-4 text-base font-sans font-medium transition-smooth rounded-xl",
+                    "hover:transform hover:scale-105",
+                    activeTab === tab.id
+                      ? "bg-primary text-primary-foreground shadow-recipe transform scale-105 font-semibold"
+                      : "text-foreground hover:bg-accent/30 hover:text-primary"
+                  )}
+                >
+                  <IconComponent size={22} />
+                  {tab.label}
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
