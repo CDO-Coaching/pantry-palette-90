@@ -87,9 +87,9 @@ const VueGeneraleTab = () => {
                     <div className="bg-primary/10 p-2 rounded-lg flex-shrink-0">
                       <ChefHat className="w-5 h-5 warm-orange" />
                     </div>
-                    <h3 className="font-recipe text-lg font-bold recipe-title leading-tight break-words">
+                    <div className="font-recipe text-base sm:text-lg font-bold recipe-title leading-tight break-words overflow-wrap-anywhere min-w-0 flex-1">
                       {recette.noms}
-                    </h3>
+                    </div>
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-4">

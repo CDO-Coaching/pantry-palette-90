@@ -101,8 +101,8 @@ const RecettesTab = () => {
           </CardHeader>
           <CardContent className="p-6">
             <Select onValueChange={handleRecetteSelect}>
-              <SelectTrigger className="w-full h-14 text-lg border-2 border-border/50 hover:border-primary/50 transition-smooth bg-card/50 rounded-xl">
-                <SelectValue placeholder="Sélectionnez une recette..." className="font-sans" />
+              <SelectTrigger className="w-full h-14 text-base sm:text-lg border-2 border-border/50 hover:border-primary/50 transition-smooth bg-card/50 rounded-xl">
+                <SelectValue placeholder="Sélectionnez une recette..." className="font-sans truncate" />
               </SelectTrigger>
               <SelectContent className="max-h-60 bg-card/95 backdrop-blur-sm">
                 {recettes.length === 0 ? (
@@ -114,9 +114,11 @@ const RecettesTab = () => {
                     <SelectItem 
                       key={recette.id} 
                       value={recette.noms}
-                      className="text-lg py-4 font-sans hover:bg-accent/30"
+                      className="text-sm sm:text-base py-3 sm:py-4 font-sans hover:bg-accent/30"
                     >
-                      {recette.noms}
+                      <div className="break-words overflow-wrap-anywhere w-full">
+                        {recette.noms}
+                      </div>
                     </SelectItem>
                   ))
                 )}
