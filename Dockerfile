@@ -11,3 +11,7 @@ FROM nginx:stable-alpine
 # Pour Vite, le build sort dans /app/dist
 COPY --from=build /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# 🔍 Debug : lister le contenu pour vérifier que nginx.conf est bien copié
+RUN ls -la /etc/nginx/conf.d/
+RUN cat /etc/nginx/conf.d/default.conf
