@@ -14,5 +14,6 @@ COPY --from=build /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # 🔍 Debug : vérifier que nginx.conf est bien copié
-RUN ls -la /etc/nginx/conf.d/
-RUN cat /etc/nginx/conf.d/default.conf
+RUN echo "==== DEBUG NGINX CONF DIR ====" && ls -la /etc/nginx/conf.d/
+RUN echo "==== DEBUG NGINX CONF CONTENT ====" && cat /etc/nginx/conf.d/default.conf
+
