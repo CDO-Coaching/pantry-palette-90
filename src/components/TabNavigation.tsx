@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { BookOpen, ShoppingCart, UtensilsCrossed } from 'lucide-react';
+import { BookOpen, ShoppingCart, UtensilsCrossed, List } from 'lucide-react';
 
 interface TabNavigationProps {
   activeTab: string;
@@ -9,6 +9,7 @@ interface TabNavigationProps {
 const TabNavigation = ({ activeTab, onTabChange }: TabNavigationProps) => {
   const tabs = [
     { id: 'courses', label: 'Liste de courses', icon: ShoppingCart },
+    { id: 'vue-generale', label: 'Vue générale', icon: List },
     { id: 'recettes', label: 'Mes Recettes', icon: BookOpen }
   ];
 
@@ -36,19 +37,20 @@ const TabNavigation = ({ activeTab, onTabChange }: TabNavigationProps) => {
             {tabs.map((tab) => {
               const IconComponent = tab.icon;
               return (
-                <button
+                 <button
                   key={tab.id}
                   onClick={() => onTabChange(tab.id)}
                   className={cn(
-                    "flex items-center gap-3 px-8 py-4 text-base font-sans font-medium transition-smooth rounded-xl",
+                    "flex items-center gap-2 sm:gap-3 px-4 sm:px-6 lg:px-8 py-3 sm:py-4 text-sm sm:text-base font-sans font-medium transition-smooth rounded-xl",
                     "hover:transform hover:scale-105",
                     activeTab === tab.id
                       ? "bg-primary text-primary-foreground shadow-recipe transform scale-105 font-semibold"
                       : "text-foreground hover:bg-accent/30 hover:text-primary"
                   )}
                 >
-                  <IconComponent size={22} />
-                  {tab.label}
+                  <IconComponent size={20} className="sm:w-[22px] sm:h-[22px]" />
+                  <span className="hidden sm:inline">{tab.label}</span>
+                  <span className="sm:hidden text-xs">{tab.label.split(' ')[0]}</span>
                 </button>
               );
             })}

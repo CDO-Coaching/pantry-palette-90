@@ -81,12 +81,12 @@ const RecettesTab = () => {
 
   return (
     <div className="min-h-screen bg-gradient-recipe">
-      <div className="max-w-4xl mx-auto p-8">
+      <div className="max-w-4xl mx-auto p-4 sm:p-6 md:p-8">
         <div className="text-center mb-10">
-          <h1 className="font-recipe text-3xl font-bold recipe-title mb-3">
+          <h1 className="font-recipe text-2xl sm:text-3xl font-bold recipe-title mb-3">
             Collection de Recettes
           </h1>
-          <p className="text-muted-foreground font-sans text-lg">
+          <p className="text-muted-foreground font-sans text-base sm:text-lg">
             Découvrez et savourez mes recettes préférées
           </p>
         </div>
@@ -129,12 +129,12 @@ const RecettesTab = () => {
         {selectedRecette && (
           <Card className="shadow-recipe bg-gradient-card border-0 transition-smooth animate-fade-in overflow-hidden">
             <CardHeader className="bg-accent/10 border-b border-border/20 pb-8">
-              <CardTitle className="flex items-start gap-4">
-                <div className="bg-primary/10 p-4 rounded-2xl flex-shrink-0">
-                  <Image className="w-8 h-8 warm-orange" />
+              <CardTitle className="flex items-start gap-3 sm:gap-4">
+                <div className="bg-primary/10 p-3 sm:p-4 rounded-2xl flex-shrink-0">
+                  <Image className="w-6 h-6 sm:w-8 sm:h-8 warm-orange" />
                 </div>
-                <div className="flex-1">
-                  <h2 className="font-recipe text-3xl font-bold recipe-title mb-2">
+                <div className="flex-1 min-w-0">
+                  <h2 className="font-recipe text-xl sm:text-2xl md:text-3xl font-bold recipe-title mb-2 break-words">
                     {selectedRecette.noms}
                   </h2>
                   <div className="flex items-center gap-4 text-muted-foreground font-sans">
@@ -148,9 +148,9 @@ const RecettesTab = () => {
                 </div>
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-8">
+            <CardContent className="p-4 sm:p-6 md:p-8">
               {/* Zone prévue pour l'image de la recette */}
-              <div className="bg-gradient-to-br from-accent/20 to-accent/10 rounded-2xl p-6 mb-8 border-2 border-dashed border-accent/40">
+              <div className="bg-gradient-to-br from-accent/20 to-accent/10 rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8 border-2 border-dashed border-accent/40">
                 <div className="text-center">
                   <Image className="w-16 h-16 mx-auto mb-4 text-accent-foreground/50" />
                   <p className="text-accent-foreground font-sans text-lg font-medium">
@@ -163,25 +163,25 @@ const RecettesTab = () => {
               </div>
               
               {/* Contenu de la recette */}
-              <div className="bg-card/50 rounded-2xl p-8 border border-border/20 backdrop-blur-sm">
+              <div className="bg-card/50 rounded-2xl p-4 sm:p-6 md:p-8 border border-border/20 backdrop-blur-sm overflow-hidden">
                 <div className="space-y-4">
                   {formatRecetteContent(selectedRecette.recette).map((line, index) => (
                     <div key={index}>
                       {line === '' ? (
                         <div className="h-4" />
                       ) : line.match(/^[A-ZÀ-Ÿ\s]+:$/) ? (
-                        <h3 className="font-recipe text-2xl font-bold recipe-title mt-8 mb-4 first:mt-0 border-b border-border/30 pb-2">
+                        <h3 className="font-recipe text-xl sm:text-2xl font-bold recipe-title mt-6 sm:mt-8 mb-3 sm:mb-4 first:mt-0 border-b border-border/30 pb-2 break-words">
                           {line}
                         </h3>
                       ) : line.startsWith('-') || line.startsWith('•') ? (
-                        <div className="flex items-start gap-4 ml-6 p-3 bg-accent/10 rounded-lg">
+                        <div className="flex items-start gap-3 sm:gap-4 ml-2 sm:ml-6 p-3 bg-accent/10 rounded-lg">
                           <div className="w-3 h-3 bg-primary rounded-full mt-2 flex-shrink-0 shadow-sm"></div>
-                          <span className="text-foreground font-sans text-lg leading-relaxed flex-1">
+                          <span className="text-foreground font-sans text-base sm:text-lg leading-relaxed flex-1 break-words overflow-wrap-anywhere">
                             {line.replace(/^[-•]\s*/, '')}
                           </span>
                         </div>
-                      ) : (
-                        <p className="text-foreground font-sans text-lg leading-relaxed">
+                       ) : (
+                        <p className="text-foreground font-sans text-base sm:text-lg leading-relaxed break-words overflow-wrap-anywhere">
                           {line}
                         </p>
                       )}
