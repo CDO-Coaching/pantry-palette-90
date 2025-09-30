@@ -1,4 +1,5 @@
-# Force rebuild - test 01
+# Force rebuild - test 02
+
 # Étape 1 : Build
 FROM node:18 AS build
 WORKDIR /app
