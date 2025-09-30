@@ -1,3 +1,4 @@
+# Force rebuild - test 01
 # Étape 1 : Build
 FROM node:18 AS build
 WORKDIR /app
@@ -12,6 +13,6 @@ FROM nginx:stable-alpine
 COPY --from=build /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# 🔍 Debug : lister le contenu pour vérifier que nginx.conf est bien copié
+# 🔍 Debug : vérifier que nginx.conf est bien copié
 RUN ls -la /etc/nginx/conf.d/
 RUN cat /etc/nginx/conf.d/default.conf
