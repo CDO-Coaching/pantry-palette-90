@@ -9,11 +9,10 @@ RUN npm run build
 
 # Étape 2 : Serveur Nginx
 FROM nginx:stable-alpine
-# Pour Vite, le build sort dans /app/dist
 COPY --from=build /app/dist /usr/share/nginx/html
+
+# Supprimer les conf par défaut et copier la tienne
+RUN rm -rf /etc/nginx/conf.d/*
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# 🔍 Debug : vérifier que nginx.conf est bien copié
-RUN echo "==== DEBUG NGINX CONF DIR ====" && ls -la /etc/nginx/conf.d/
-RUN echo "==== DEBUG NGINX CONF CONTENT ====" && cat /etc/nginx/conf.d/default.conf
 
