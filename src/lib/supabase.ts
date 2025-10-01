@@ -22,6 +22,6 @@ export interface Recette {
 export interface HistoriqueRecette {
   id: number;
   nom: string;
-  recettes: string;
+  recette: string;
   created_at?: string;
 }

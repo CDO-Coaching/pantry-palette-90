@@ -105,7 +105,7 @@ const HistoriqueRecetteDetail = () => {
           <CardContent className="p-6 sm:p-8">
             <div className="prose prose-sm sm:prose-base max-w-none">
               <div className="font-sans text-base sm:text-lg leading-relaxed whitespace-pre-wrap break-words">
-                {recette.recettes}
+                {recette.recette}
               </div>
             </div>
           </CardContent>
