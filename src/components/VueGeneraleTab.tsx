@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { supabase, Recette } from '@/lib/supabase';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -6,6 +7,7 @@ import { useToast } from '@/hooks/use-toast';
 import { BookOpen, ChefHat } from 'lucide-react';
 
 const VueGeneraleTab = () => {
+  const navigate = useNavigate();
   const [recettes, setRecettes] = useState<Recette[]>([]);
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
@@ -60,7 +62,7 @@ const VueGeneraleTab = () => {
       <div className="max-w-6xl mx-auto p-4 sm:p-6 md:p-8">
         <div className="text-center mb-10">
           <h1 className="font-recipe text-2xl sm:text-3xl font-bold recipe-title mb-3">
-            Vue Générale des Recettes
+            Recettes de la Semaine
           </h1>
           <p className="text-muted-foreground font-sans text-base sm:text-lg">
             {recettes.length} recette{recettes.length > 1 ? 's' : ''} disponible{recettes.length > 1 ? 's' : ''}
@@ -80,7 +82,8 @@ const VueGeneraleTab = () => {
             {recettes.map((recette) => (
               <Card 
                 key={recette.id} 
-                className="shadow-recipe bg-gradient-card border-0 transition-smooth hover:transform hover:scale-105 hover:shadow-xl overflow-hidden"
+                onClick={() => navigate(`/recette/${recette.id}`)}
+                className="shadow-recipe bg-gradient-card border-0 transition-smooth hover:transform hover:scale-105 hover:shadow-xl overflow-hidden cursor-pointer"
               >
                 <CardHeader className="bg-accent/10 border-b border-border/20 pb-4">
                   <CardTitle className="flex items-start gap-3">
@@ -95,7 +98,7 @@ const VueGeneraleTab = () => {
                 <CardContent className="p-4">
                   <div className="flex items-center gap-2 text-muted-foreground">
                     <BookOpen className="w-4 h-4 flex-shrink-0" />
-                    <span className="text-sm font-sans truncate">Fiche de recette</span>
+                    <span className="text-sm font-sans truncate">Voir la recette</span>
                   </div>
                 </CardContent>
               </Card>
