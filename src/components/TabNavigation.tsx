@@ -10,7 +10,7 @@ const TabNavigation = ({ activeTab, onTabChange }: TabNavigationProps) => {
   const tabs = [
     { id: 'courses', label: 'Liste de courses', icon: ShoppingCart },
     { id: 'vue-generale', label: 'Recettes de la semaine', icon: List },
-    { id: 'recettes', label: 'Mes Recettes', icon: BookOpen }
+    { id: 'recettes', label: 'Toutes les Recettes', icon: BookOpen }
   ];
 
   return (

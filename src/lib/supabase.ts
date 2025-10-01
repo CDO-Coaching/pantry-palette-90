@@ -18,3 +18,10 @@ export interface Recette {
   recette: string;
   created_at?: string;
 }
+
+export interface HistoriqueRecette {
+  id: number;
+  nom: string;
+  recettes: string;
+  created_at?: string;
+}
