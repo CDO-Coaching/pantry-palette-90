@@ -7,10 +7,10 @@ export default defineConfig(({ mode }) => ({
   server: {
     port: 8080,
   },
-  base: "/", // garde la racine
+  base: "./", // ✅ chemin relatif pour la prod
   build: {
     outDir: "dist",
-    assetsDir: "assets", // <-- ajoute ceci
+    assetsDir: "assets",
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
