@@ -10,6 +10,7 @@ RUN npm run build
 
 # Étape 2 : Serveur Nginx
 FROM nginx:stable-alpine
+EXPOSE 80
 COPY --from=build /app/dist /usr/share/nginx/html
 
 # Supprimer les conf par défaut et copier la tienne

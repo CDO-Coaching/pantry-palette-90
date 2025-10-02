@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = 'https://supabasekong.cdocoaching.com';
-const supabaseKey = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzdXBhYmFzZSIsImlhdCI6MTc1ODUzMDc2MCwiZXhwIjo0OTE0MjA0MzYwLCJyb2xlIjoic2VydmljZV9yb2xlIn0.NcU1tMm2d743mJHfz2B8rmFFx9RLbcBMn-cu64AJHFg';
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://supabasekong.cdocoaching.com';
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzdXBhYmFzZSIsImlhdCI6MTc1ODUzMDc2MCwiZXhwIjo0OTE0MjA0MzYwLCJyb2xlIjoic2VydmljZV9yb2xlIn0.NcU1tMm2d743mJHfz2B8rmFFx9RLbcBMn-cu64AJHFg';
 
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
