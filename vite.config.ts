@@ -7,7 +7,7 @@ export default defineConfig(({ mode }) => ({
   server: {
     port: 8080,
   },
-  base: "./", // ✅ chemin relatif pour la prod
+  base: "./", // 🔥 important : chemins relatifs
   build: {
     outDir: "dist",
     assetsDir: "assets",
