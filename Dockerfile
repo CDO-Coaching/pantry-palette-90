@@ -1,20 +1,31 @@
-# Force rebuild - test 02
+# Étape 1: Build de l'application
+FROM node:18-alpine AS builder
 
-# Étape 1 : Build
-FROM node:18 AS build
 WORKDIR /app
+
+# Copier les fichiers de dépendances
 COPY package*.json ./
-RUN npm install
+
+# Installer les dépendances
+RUN npm ci
+
+# Copier tout le code source
 COPY . .
+
+# Build de l'application
 RUN npm run build
 
-# Étape 2 : Serveur Nginx
-FROM nginx:stable-alpine
-EXPOSE 80
-COPY --from=build /app/dist /usr/share/nginx/html
+# Étape 2: Serveur de production avec Nginx
+FROM nginx:alpine
 
-# Supprimer les conf par défaut et copier la tienne
-RUN rm -rf /etc/nginx/conf.d/*
+# Copier les fichiers buildés depuis l'étape précédente
+COPY --from=builder /app/dist /usr/share/nginx/html
+
+# Copier la configuration Nginx personnalisée
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
+# Exposer le port 80
+EXPOSE 80
 
+# Démarrer Nginx
+CMD ["nginx", "-g", "daemon off;"]
