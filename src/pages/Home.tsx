@@ -58,10 +58,10 @@ const Home = () => {
               <Card
                 key={section.id}
                 onClick={() => navigate(section.path)}
-                className={`shadow-recipe bg-gradient-card border-0 transition-smooth hover:transform hover:scale-105 hover:shadow-xl cursor-pointer group overflow-hidden`}
+                className={`shadow-recipe bg-gradient-card border-0 transition-smooth hover:transform hover:scale-105 hover:shadow-xl cursor-pointer group overflow-hidden relative`}
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${section.gradient} opacity-0 group-hover:opacity-100 transition-opacity`} />
-                <CardHeader className="relative z-10 pb-4">
+                <div className={`absolute inset-0 bg-gradient-to-br ${section.gradient} opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none`} />
+                <CardHeader className="relative z-10 pb-4 pointer-events-none">
                   <div className="flex justify-center mb-4">
                     <div className="bg-primary/10 p-6 rounded-2xl group-hover:bg-primary/20 transition-colors">
                       <IconComponent className="w-12 h-12 warm-orange" />
@@ -71,7 +71,7 @@ const Home = () => {
                     {section.title}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="relative z-10">
+                <CardContent className="relative z-10 pointer-events-none">
                   <CardDescription className="text-center font-sans text-base leading-relaxed">
                     {section.description}
                   </CardDescription>
