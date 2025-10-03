@@ -33,8 +33,12 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-recipe">
-      <div className="max-w-6xl mx-auto p-4 sm:p-6 md:p-8">
+    <div className="min-h-screen bg-gradient-recipe relative overflow-hidden">
+      {/* Formes organiques décoratives */}
+      <div className="organic-shape organic-shape-1"></div>
+      <div className="organic-shape organic-shape-2"></div>
+      
+      <div className="max-w-6xl mx-auto p-4 sm:p-6 md:p-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16">
           <div className="flex items-center justify-center gap-3 mb-6">
@@ -44,7 +48,7 @@ const Home = () => {
             </h1>
             <UtensilsCrossed className="w-10 h-10 sm:w-12 sm:h-12 warm-orange" />
           </div>
-          <p className="text-muted-foreground font-sans text-lg sm:text-xl italic max-w-2xl mx-auto">
+          <p className="text-muted-foreground font-sans text-lg sm:text-xl max-w-2xl mx-auto">
             Bienvenue dans votre espace culinaire personnel
           </p>
           <div className="w-24 h-1 bg-gradient-primary rounded-full mx-auto mt-6"></div>
@@ -58,13 +62,13 @@ const Home = () => {
               <Card
                 key={section.id}
                 onClick={() => navigate(section.path)}
-                className={`shadow-recipe bg-gradient-card border-0 transition-smooth hover:transform hover:scale-105 hover:shadow-xl cursor-pointer group overflow-hidden relative`}
+                className="shadow-card bg-card border border-border/40 transition-smooth hover:transform hover:scale-105 hover:shadow-xl cursor-pointer group overflow-hidden relative rounded-3xl"
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${section.gradient} opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none`} />
+                <div className={`absolute inset-0 bg-gradient-to-br ${section.gradient} opacity-0 group-hover:opacity-70 transition-opacity pointer-events-none`} />
                 <CardHeader className="relative z-10 pb-4 pointer-events-none">
                   <div className="flex justify-center mb-4">
-                    <div className="bg-primary/10 p-6 rounded-2xl group-hover:bg-primary/20 transition-colors">
-                      <IconComponent className="w-12 h-12 warm-orange" />
+                    <div className="bg-gradient-warm p-6 rounded-3xl group-hover:scale-110 transition-all">
+                      <IconComponent className="w-12 h-12 text-primary" />
                     </div>
                   </div>
                   <CardTitle className="font-recipe text-2xl font-bold recipe-title text-center">
@@ -72,7 +76,7 @@ const Home = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="relative z-10 pointer-events-none">
-                  <CardDescription className="text-center font-sans text-base leading-relaxed">
+                  <CardDescription className="text-center font-sans text-base leading-relaxed text-muted-foreground">
                     {section.description}
                   </CardDescription>
                 </CardContent>
@@ -83,7 +87,7 @@ const Home = () => {
 
         {/* Footer Quote */}
         <div className="text-center mt-16 sm:mt-20">
-          <p className="text-muted-foreground font-sans text-lg italic">
+          <p className="text-muted-foreground font-sans text-lg">
             "La cuisine est un art et tout le monde peut être un artiste"
           </p>
         </div>
