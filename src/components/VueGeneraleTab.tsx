@@ -57,6 +57,35 @@ const VueGeneraleTab = () => {
     );
   }
 
+  // Catégoriser les recettes par ID
+  const petitsDej = recettes.filter(r => r.id >= 1 && r.id <= 6);
+  const repas = recettes.filter(r => r.id >= 7 && r.id <= 12);
+
+  const RecetteCard = ({ recette }: { recette: Recette }) => (
+    <Card 
+      key={recette.id} 
+      onClick={() => navigate(`/recette/${recette.id}`)}
+      className="shadow-card bg-card border border-border/40 transition-smooth hover:transform hover:scale-105 hover:shadow-xl overflow-hidden cursor-pointer rounded-2xl"
+    >
+      <CardHeader className="bg-gradient-warm/30 border-b border-border/20 pb-4">
+        <CardTitle className="flex items-start gap-3">
+          <div className="bg-primary/20 p-2 rounded-xl flex-shrink-0">
+            <ChefHat className="w-5 h-5 text-primary" />
+          </div>
+          <div className="font-recipe text-base sm:text-lg font-bold recipe-title leading-tight break-words overflow-wrap-anywhere min-w-0 flex-1">
+            {recette.noms}
+          </div>
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="p-4">
+        <div className="flex items-center gap-2 text-muted-foreground">
+          <BookOpen className="w-4 h-4 flex-shrink-0" />
+          <span className="text-sm font-sans truncate">Voir la recette</span>
+        </div>
+      </CardContent>
+    </Card>
+  );
+
   return (
     <div className="min-h-screen bg-gradient-recipe">
       <div className="max-w-6xl mx-auto p-4 sm:p-6 md:p-8">
@@ -70,7 +99,7 @@ const VueGeneraleTab = () => {
         </div>
 
         {recettes.length === 0 ? (
-          <Card className="text-center p-12 shadow-recipe bg-gradient-card border-0">
+          <Card className="text-center p-12 shadow-card bg-card border border-border/40 rounded-3xl">
             <div className="text-7xl mb-6">📖</div>
             <h3 className="font-recipe text-2xl font-semibold recipe-title mb-4">Aucune recette</h3>
             <p className="text-muted-foreground font-sans text-lg leading-relaxed max-w-md mx-auto">
@@ -78,31 +107,46 @@ const VueGeneraleTab = () => {
             </p>
           </Card>
         ) : (
-          <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            {recettes.map((recette) => (
-              <Card 
-                key={recette.id} 
-                onClick={() => navigate(`/recette/${recette.id}`)}
-                className="shadow-recipe bg-gradient-card border-0 transition-smooth hover:transform hover:scale-105 hover:shadow-xl overflow-hidden cursor-pointer"
-              >
-                <CardHeader className="bg-accent/10 border-b border-border/20 pb-4">
-                  <CardTitle className="flex items-start gap-3">
-                    <div className="bg-primary/10 p-2 rounded-lg flex-shrink-0">
-                      <ChefHat className="w-5 h-5 warm-orange" />
-                    </div>
-                    <div className="font-recipe text-base sm:text-lg font-bold recipe-title leading-tight break-words overflow-wrap-anywhere min-w-0 flex-1">
-                      {recette.noms}
-                    </div>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="p-4">
-                  <div className="flex items-center gap-2 text-muted-foreground">
-                    <BookOpen className="w-4 h-4 flex-shrink-0" />
-                    <span className="text-sm font-sans truncate">Voir la recette</span>
+          <div className="space-y-10">
+            {/* Section Petits Déjeuners */}
+            {petitsDej.length > 0 && (
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="bg-gradient-warm p-3 rounded-2xl">
+                    <span className="text-2xl">☕</span>
                   </div>
-                </CardContent>
-              </Card>
-            ))}
+                  <h2 className="font-recipe text-xl sm:text-2xl font-bold recipe-title">
+                    Petits Déjeuners
+                  </h2>
+                  <div className="flex-1 h-px bg-gradient-primary opacity-30"></div>
+                </div>
+                <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+                  {petitsDej.map((recette) => (
+                    <RecetteCard key={recette.id} recette={recette} />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Section Repas */}
+            {repas.length > 0 && (
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="bg-gradient-warm p-3 rounded-2xl">
+                    <span className="text-2xl">🍽️</span>
+                  </div>
+                  <h2 className="font-recipe text-xl sm:text-2xl font-bold recipe-title">
+                    Repas
+                  </h2>
+                  <div className="flex-1 h-px bg-gradient-primary opacity-30"></div>
+                </div>
+                <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+                  {repas.map((recette) => (
+                    <RecetteCard key={recette.id} recette={recette} />
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>
