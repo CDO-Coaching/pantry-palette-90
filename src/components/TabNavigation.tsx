@@ -1,17 +1,22 @@
 import { cn } from "@/lib/utils";
 import { BookOpen, ShoppingCart, UtensilsCrossed, List } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-interface TabNavigationProps {
-  activeTab: string;
-  onTabChange: (tab: string) => void;
-}
+const TabNavigation = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
 
-const TabNavigation = ({ activeTab, onTabChange }: TabNavigationProps) => {
   const tabs = [
-    { id: 'courses', label: 'Liste de courses', icon: ShoppingCart },
-    { id: 'vue-generale', label: 'Recettes de la semaine', icon: List },
-    { id: 'recettes', label: 'Toutes les Recettes', icon: BookOpen }
+    { id: 'courses', label: 'Liste de courses', icon: ShoppingCart, path: '/courses' },
+    { id: 'recettes-semaine', label: 'Recettes de la semaine', icon: List, path: '/recettes-semaine' },
+    { id: 'toutes-recettes', label: 'Toutes les Recettes', icon: BookOpen, path: '/toutes-recettes' }
   ];
+
+  const getActiveTab = () => {
+    const currentPath = location.pathname;
+    const tab = tabs.find(t => t.path === currentPath);
+    return tab?.id || '';
+  };
 
   return (
     <div className="w-full bg-gradient-recipe border-b border-border/30 shadow-card">
@@ -39,11 +44,11 @@ const TabNavigation = ({ activeTab, onTabChange }: TabNavigationProps) => {
               return (
                  <button
                   key={tab.id}
-                  onClick={() => onTabChange(tab.id)}
+                  onClick={() => navigate(tab.path)}
                   className={cn(
                     "flex items-center gap-2 sm:gap-3 px-4 sm:px-6 lg:px-8 py-3 sm:py-4 text-sm sm:text-base font-sans font-medium transition-smooth rounded-xl",
                     "hover:transform hover:scale-105",
-                    activeTab === tab.id
+                    getActiveTab() === tab.id
                       ? "bg-primary text-primary-foreground shadow-recipe transform scale-105 font-semibold"
                       : "text-foreground hover:bg-accent/30 hover:text-primary"
                   )}
